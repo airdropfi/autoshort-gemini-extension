@@ -24,6 +24,10 @@ A browser window opens: sign in to AutoShort and click Allow. Sign-in is OAuth 2
 
 Update later with `gemini extensions update autoshort`; remove with `gemini extensions uninstall autoshort`.
 
+### Which Gemini CLI, and Antigravity CLI
+
+Google announced on 2026-05-19 that Gemini CLI stops serving Google AI Pro, Ultra and free individual accounts on 2026-06-18 (source: https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli). Gemini CLI keeps working with a paid Gemini API key or an enterprise license. If you use Antigravity CLI instead, its migration guide says `agy plugin import gemini` converts installed Gemini extensions to plugins (https://antigravity.google/docs/cli/gcli-migration). We have only tested this extension with Gemini CLI.
+
 ## Commands
 
 | Command | What it does |
