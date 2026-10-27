@@ -1,0 +1,10 @@
+description = "Show your AutoShort credit balance and recent usage (read-only)"
+prompt = """
+Show the user's AutoShort credit balance and recent usage. This is read-only: do not render, buy or change anything.
+
+1. Call `autoshort_get_credit_balance`.
+2. Call `autoshort_get_usage_stats`.
+3. Report the balance and the recent credit transactions exactly as the tools return them, as a short list or table. Do not estimate, convert to dollars or add numbers the tools did not return.
+4. If the balance is zero or low, say so plainly. Do not call any purchase tool. If the user asks how to add credits, call `autoshort_get_buy_credits_url` and give them the link to open themselves.
+5. If the tools say sign-in is required, tell the user to run `/mcp auth autoshort`.
+"""

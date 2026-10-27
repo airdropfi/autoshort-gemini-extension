@@ -1,0 +1,28 @@
+description = "Make a faceless short with AutoShort: script review, free draft, price check, render after your yes"
+prompt = """
+Turn the user's idea into a short video on their AutoShort account in four steps: idea, script, draft, render. Nothing is rendered or charged until the user has seen the script and the price and has said yes. Follow the rules in GEMINI.md.
+
+The user's idea (may be empty): {{args}}
+
+Ground rules
+- Never call `autoshort_render_draft` (or any `autoshort_generate_*` tool) without an explicit yes to the exact price in this conversation.
+- Quote every price, balance and limit from tool output only.
+- Do not buy credits or set up auto-recharge; those tools are not available.
+- Do not promise results.
+
+1. Idea. Call `autoshort_get_capabilities` (free) once and use what it returns for limits, durations, languages and art styles. Ask only for what you do not know: topic, audience, narration language, length. If the user has only a topic, propose three hook-first angles in one line each. `autoshort_list_templates` and `autoshort_list_niches` are optional (free).
+
+2. Script. Show the script scene by scene in a table before saving anything: # | Narration (read aloud, verbatim) | Visual (what the viewer sees). The first sentence is the hook (a real question, claim or tension, not a greeting). One idea per scene, spoken language, concrete shot descriptions. Keep health, money and legal topics to general information. Ask: "Want to change anything before I save it as a draft?" and apply edits.
+
+3. Draft (free). Call `autoshort_draft_video` with `scenes[]` exactly as agreed, plus language, art style, title and length. Report what the tool returned: `draftId`, the scenes, estimated length, estimated credits and every entry in `warnings[]`. Change things with `autoshort_update_draft`, re-read with `autoshort_get_draft`, and show the scenes again until the user is happy. To change one scene of a rendered video use `autoshort_revise_scene` (it makes a new draft; the original is untouched).
+
+4. Price, approval, render. Call `autoshort_estimate_cost` with `{ "draftId": "<id>" }` and `autoshort_get_credit_balance` (both free). Say it plainly: "Rendering this draft will charge N credits. Your balance is M." with the numbers from the tools, and mention length, voice, language and art style. Ask "Render it?" and wait for a clear yes; silence or "looks good" about the script is not a yes. On yes, call `autoshort_render_draft` once with the `draftId` (retry-safe; do not call it again unless the first call says nothing was submitted). Poll `autoshort_get_video` every 20 to 30 seconds until COMPLETED or FAILED. If it reports a `blockedReason`, stop and relay it. On COMPLETED give the video link the tool returned. On FAILED relay the message as written and check `autoshort_get_credit_balance`.
+
+If the balance is short, say how many credits are needed and how many the account has, both from tools. Offer a shorter draft. If the user asks how to add credits, give the link from `autoshort_get_buy_credits_url`; they pay on that page, not through you.
+
+After the video, only if asked: `autoshort_get_connection_status` and `autoshort_publish_video` to post, `autoshort_list_videos` / `autoshort_get_video` for status, `autoshort_cancel_video` for a video that has not started rendering (it asks the user to confirm). For a multi-episode story use `/autoshort:series`.
+
+Remind the user to switch on the platform's AI-content label when posting. Do not claim a video will be monetised, go viral or earn anything.
+
+If the tools answer "Sign-in required", tell the user to run `/mcp auth autoshort`.
+"""

@@ -1,0 +1,12 @@
+{
+  "name": "autoshort",
+  "version": "1.0.0",
+  "description": "Plan, draft and render faceless short videos on your AutoShort account from Gemini CLI: script review first, credit price shown before any render.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "autoshort": {
+      "httpUrl": "https://autoshort.org/api/mcp",
+      "excludeTools": ["autoshort_buy_credits", "autoshort_setup_auto_recharge"]
+    }
+  }
+}

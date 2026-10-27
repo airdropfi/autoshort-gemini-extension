@@ -1,0 +1,14 @@
+description = "Read your own performance and the template gallery, then get short-video formats to test (read-only)"
+prompt = """
+Find short-video formats worth testing for the user. Everything here is read-only: do not render, charge or post. Report numbers exactly as the tools return them, do not round up or predict views, and make no claims about earnings or going viral.
+
+Focus (may be empty): {{args}}
+
+1. Own data: call `autoshort_list_series`, then `autoshort_get_series_performance` (optionally with `seriesId` and `days`). It covers only the user's own posted YouTube Shorts, comes from daily snapshots and has no retention data. Describe what the top videos share and what the bottom ones share, state how many videos each observation rests on, and say it is too early to conclude when only a handful were measured. If nothing is posted yet, say so and continue.
+2. Inside AutoShort: call `autoshort_list_templates` (filter by niche when the user gave one) and `autoshort_list_niches`. Show a few matching templates with name and purpose. Show prices only as a tool returns them.
+3. Reference Shorts: AutoShort has no format-presets endpoint. If the user names public Shorts they admire, learn only their structure (hook type, beats, turn, payoff, length, what the viewer sees). Do not copy anyone's script, voice or footage.
+4. Write 2 to 4 format cards: name, hook pattern with one original example, 3 to 6 beats, length and pacing, visual style, one honest sentence on why it might work (a hypothesis) and what could go wrong.
+5. Propose 3 videos in 2 formats, changing one variable at a time, and when to measure again with `autoshort_get_series_performance`. Say plainly that a handful of videos is a weak signal.
+
+Then ask which card to turn into a draft and offer `/autoshort:short` (one video) or `/autoshort:series` (a story).
+"""
