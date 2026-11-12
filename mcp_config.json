@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "autoshort": {
+      "serverUrl": "https://autoshort.org/api/mcp",
+      "disabledTools": ["autoshort_buy_credits", "autoshort_setup_auto_recharge"]
+    }
+  }
+}
