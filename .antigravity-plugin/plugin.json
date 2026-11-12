@@ -1,0 +1,21 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "autoshort",
+  "displayName": "AutoShort",
+  "version": "1.0.0",
+  "description": "Plan, draft and render faceless short videos on your AutoShort account: script review first, credit price shown before any render.",
+  "logo": "assets/icon.png",
+  "suggestedPrompts": [
+    "Draft a 30-second faceless short about why octopuses have three hearts and show me the script",
+    "Show my AutoShort credit balance and recent usage",
+    "Plan a five-episode story series and show me the season plan before anything is made"
+  ],
+  "author": {
+    "name": "AutoShort",
+    "url": "https://autoshort.org"
+  },
+  "homepage": "https://autoshort.org/en/developers",
+  "repository": "https://github.com/airdropfi/autoshort-gemini-extension",
+  "license": "MIT",
+  "keywords": ["short-video", "video", "faceless", "mcp", "autoshort"]
+}

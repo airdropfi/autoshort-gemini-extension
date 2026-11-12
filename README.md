@@ -26,7 +26,13 @@ Update later with `gemini extensions update autoshort`; remove with `gemini exte
 
 ### Which Gemini CLI, and Antigravity CLI
 
-Google announced on 2026-05-19 that Gemini CLI stops serving Google AI Pro, Ultra and free individual accounts on 2026-06-18 (source: https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli). Gemini CLI keeps working with a paid Gemini API key or an enterprise license. If you use Antigravity CLI instead, its migration guide says `agy plugin import gemini` converts installed Gemini extensions to plugins (https://antigravity.google/docs/cli/gcli-migration). We have only tested this extension with Gemini CLI.
+Google announced on 2026-05-19 that Gemini CLI stops serving Google AI Pro, Ultra and free individual accounts on 2026-06-18 (source: https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli). Gemini CLI keeps working with a paid Gemini API key or an enterprise license. If you use Antigravity CLI instead, this repository is also an Antigravity plugin (`.antigravity-plugin/plugin.json`, `mcp_config.json`, `rules/AGENTS.md`):
+
+```bash
+agy plugin install https://github.com/airdropfi/autoshort-gemini-extension
+```
+
+It connects the same MCP server (`https://autoshort.org/api/mcp`, OAuth sign-in opens in your browser when the server connects) with the credit-buying tools switched off (`disabledTools`), and loads the rules from `GEMINI.md` as an always-on rule. The slash commands below are Gemini CLI commands; Antigravity plugins have no commands, so there you just describe what you want. `agy plugin validate .` passes (with warnings that `GEMINI.md` and `commands/` are not loaded by Antigravity); we have not run the plugin end to end in Antigravity yet. Google's migration guide also describes `agy plugin import gemini` (https://antigravity.google/docs/cli/gcli-migration).
 
 ## Commands
 
@@ -53,6 +59,9 @@ You can also just describe what you want ("make a 30-second short about why octo
 
 ```text
 gemini-extension.json        manifest: name, version, remote MCP server https://autoshort.org/api/mcp
+.antigravity-plugin/plugin.json  Antigravity plugin manifest
+mcp_config.json              Antigravity MCP server definition (same server)
+rules/AGENTS.md              Antigravity always-on rule (a copy of GEMINI.md: keep both in sync)
 GEMINI.md                    context: what AutoShort is and the rules above
 commands/autoshort/*.toml    /autoshort:short, :series, :credits, :formats
 assets/icon.png              icon
